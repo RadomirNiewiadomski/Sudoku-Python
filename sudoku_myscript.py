@@ -13,5 +13,33 @@ print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
 gamer_answer = input("Press p to play the game: ")
 
 if gamer_answer == 'p':
-    print_board = Board()
-    print_board.show_board()
+    board = Board()
+    board.show_board()
+
+while board.is_board_complete() == False:
+    try:
+        row = int(input("Enter a row (1-9): "))
+    except ValueError:
+        print("Error - row must be a number from 1 to 9!")
+    try:
+        column = int(input("Enter a column (1-9): "))
+    except ValueError:
+        print("Error - column must be a number from 1 to 9!")
+    try:
+        guess = int(input("Enter your guess (1-9): "))
+        if row in range(1, 10) and column in range(1, 10) and guess in range(1, 10):
+            board.insert_element(row, column, guess)
+        else:
+            print("Error - row, column and guess have to be number from 1 to 9!")
+    except ValueError:
+        print("Error - guess must be a number from 1 to 9!")
+    board.show_board()
+    gamer_answer = input(
+        "Press any key to continue or press q to quit the game.")
+    if gamer_answer == 'q':
+        break
+
+if board.is_board_correct() == True:
+    print("Congratulation, correct answers!")
+else:
+    print("Sorry, you've failed.")

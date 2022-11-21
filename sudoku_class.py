@@ -25,3 +25,24 @@ class Board():
             for element in row:
                 print(element, end=" ")
             print()     # to add a new line after last element in each row
+
+    def insert_element(self, row, column, guess):
+        if self.board[row-1][column-1] == "*":  # -1 because list index starts from 0
+            self.board[row-1][column-1] = str(guess)
+        else:
+            print(
+                "Incorrect position! Choose an empty space from the board (marked as *). Try again")
+
+    def is_board_complete(self):
+        for row in self.board:
+            for element in row:
+                if element == "*":
+                    return False
+        return True
+
+    def is_board_correct(self):
+        for row in range(0, 9):
+            for element in range(0, 9):
+                if self.board[row][element] != self.board_correct[row][element]:
+                    return False
+        return True
