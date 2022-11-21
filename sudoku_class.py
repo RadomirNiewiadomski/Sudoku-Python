@@ -19,3 +19,9 @@ class Board():
                               ["5", "1", "7", "2", "9", "3", "8", "4", "6"],
                               ["2", "3", "8", "4", "6", "5", "9", "1", "7"],
                               ["9", "4", "6", "7", "1", "8", "2", "3", "5"]]
+
+    def show_board(self):
+        for row in self.board:
+            for element in row:
+                print(element, end=" ")
+            print()     # to add a new line after last element in each row
