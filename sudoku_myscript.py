@@ -1,4 +1,4 @@
-from sudoku_class import Board
+from sudoku_class import Board, Board_Medium, Board_Hard
 
 print("\n~~~~~~~~~~Welcome to Sudoku!~~~~~~~~~~")
 print("At first read the main rules to play the game: ")
@@ -10,10 +10,17 @@ print("To insert number: select a row, then a column.")
 print("Choose your guess from 1 to 9.")
 print("Have fun!")
 print("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~")
-gamer_answer = input("Press p to play the game: ")
+gamer_answer = input(
+    "Select difficulty level (1 - easy, 2 - medium, 3 - hard): ")
 
-if gamer_answer == 'p':
+if gamer_answer == '1':
     board = Board()
+    board.show_board()
+elif gamer_answer == '2':
+    board = Board_Medium()
+    board.show_board()
+elif gamer_answer == '3':
+    board = Board_Hard()
     board.show_board()
 
 while board.is_board_complete() == False:
@@ -37,9 +44,11 @@ while board.is_board_complete() == False:
     gamer_answer = input(
         "Press any key to continue or press q to quit the game.")
     if gamer_answer == 'q':
+        print("You've quit the game. Goodbye")
         break
 
-if board.is_board_correct() == True:
-    print("Congratulation, correct answers!")
-else:
-    print("Sorry, you've failed.")
+if board.is_board_complete == True:
+    if board.is_board_correct() == True:
+        print("Congratulation, correct answers! You've successfully completed sudoku!")
+    else:
+        print("Sorry, you've failed. Your sudoku is not correct, please try again.")
